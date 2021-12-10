@@ -1,5 +1,4 @@
-const testCase = 
-`forward 1
+forward 1
 forward 2
 down 5
 down 5
@@ -999,43 +998,3 @@ down 6
 down 2
 forward 9
 forward 3
-`
-
-function partOne (string) {
-    const arr = string.split('\n').map(i=> {
-        return i.split('')
-    })
-    const forward = arr.filter(i => i[0] === 'forward').map(i => Number(i[1])).reduce((a,b) => a + b)
-    const up = arr.filter(i => i[0] === 'up').map(i => Number(i[1])).reduce((a,b) => a + b)
-    const down = arr.filter(i => i[0] === 'down').map(i => Number(i[1])).reduce((a,b) => a + b)
-    return forward * (down - up)
-   
-} 
-
-// console.log(partOne(testCase))
-
-
-function partTwo (string) {
-    const arr = string.split('\n').map(i=> {
-        return i.split(' ')
-    })
-    let aim = 0
-    let position = 0
-    let depth = 0
-    for (let i = 0; i < arr.length; i++) {
-        let direction = arr[i][0]
-        let move = arr[i][1]
-        if (direction === 'forward') {
-            position += Number(move)
-            depth += Number(move) * aim
-        } else if (direction === 'down') {
-            aim += Number(move)
-        } else if (direction === 'up') {
-            aim -= Number(move)
-        }
-    }
-    return position * depth
-    console.log('arr',aim, position, depth)
-}
-
-console.log(partTwo(testCase))
